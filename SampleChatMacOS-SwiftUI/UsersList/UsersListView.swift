@@ -8,17 +8,35 @@
 import SwiftUI
 
 struct UsersListView: View {
+    
+    @Binding var usersList        : [UsersData]
+    @State var isChatView = false
+    
     var body: some View {
-        List{
-            Text("Alekya")
-            Text("Alekya")
-            Text("Alekya")
-            Text("Alekya")
-            Text("Alekya")
+        NavigationView{
+            List() {
+                ForEach(usersList) { element in
+                    NavigationLink(destination: ChatView(recieverData: .constant(element))) {
+                        HStack{
+                            Text("\(element.userName)")
+                        }
+                    }
+//                    HStack{
+//                        Text("\(element.userName)")
+//                    }
+//                    .navigationDestination(isPresented: $isChatView) {
+//                        ChatView()
+//                    }
+//                    .onTapGesture {
+//                        print("selected item is \(element.userName)")
+//                        isChatView = true
+//                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    UsersListView()
+    UsersListView(usersList: .constant(Firebase().userList))
 }
