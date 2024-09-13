@@ -41,7 +41,7 @@ public class UsersData:Identifiable {
     }
 }
 
-public class MessageData{
+public class MessageData:Identifiable {
     var messageID          : String = ""
     var senderId           : String = ""
     var recieverId         : String = ""
@@ -101,6 +101,7 @@ class Firebase{
     //Chat Users
     var userExists  = false
     var userList    = [UsersData]()
+    var messagesList    = [MessageData]()
     var userData    = UsersData()
     
     func clearMessageListener()
@@ -169,6 +170,30 @@ class Firebase{
             }
     }
     
+    func getMessages(senderId:String,recieverId:String,completion:@escaping (Bool) -> ()){
+        db.collection(endPoints.conversation)
+            .whereField("senderId", in: [senderId, recieverId])
+            .whereField("recieverId", in: [senderId, recieverId])
+            .order(by: "timestamp", descending: false)
+            .getDocuments { [self] (querySnapshot, err) in
+                if let err = err {
+                    print(err)
+                    completion(false)
+                } else {
+                    messagesList.removeAll()
+                    for docs in querySnapshot!.documents {//for (index, docs) in querySnapshot!.documents.enumerated() {
+                        print("\(docs.documentID) => \(docs.data())")
+                        messagesList.append(MessageData().toObjects(map: docs.data()))
+                    }
+                    completion(true)
+                    if querySnapshot!.documents.count == 0
+                    {
+                        return
+                    }
+                }
+            }
+    }
+    
     func addMessage(messageData: MessageData,completion:@escaping (Bool) -> ()){
         let messageRef = db.collection(endPoints.conversation).document()
         let messageId = messageRef.documentID
@@ -179,6 +204,7 @@ class Firebase{
                 print("Error adding document: \(error.localizedDescription)")
             } else {
                 print("Document added with ID: \(messageId)")
+                completion(true)
             }
         }
     }
