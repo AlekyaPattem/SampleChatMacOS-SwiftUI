@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3959042C946EF500E55123 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B3959032C946EF500E55123 /* GoogleService-Info.plist */; };
 		0B4F36642C5B496200CD036A /* SampleChatMacOS_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F36632C5B496200CD036A /* SampleChatMacOS_SwiftUIApp.swift */; };
 		0B4F36662C5B496200CD036A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F36652C5B496200CD036A /* MainView.swift */; };
 		0B4F36682C5B496300CD036A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B4F36672C5B496300CD036A /* Assets.xcassets */; };
@@ -14,13 +15,13 @@
 		0B4F36742C5B4E2A00CD036A /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F36732C5B4E2A00CD036A /* UsersListView.swift */; };
 		0B4F36772C5B576F00CD036A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F36762C5B576F00CD036A /* LoginView.swift */; };
 		0B4F367C2C5B6C1900CD036A /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4F367B2C5B6C1900CD036A /* FirebaseModel.swift */; };
-		0B5D68D12C625BDE006A8271 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B5D68D02C625BDE006A8271 /* GoogleService-Info.plist */; };
 		0B9656772C5CCE2A008FC78E /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9656762C5CCE2A008FC78E /* SignupView.swift */; };
 		0BA952952C62305100CC3E6F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA952942C62305100CC3E6F /* ChatView.swift */; };
 		C115E83383CA22A3C8F4162E /* Pods_SampleChatMacOS_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505F1131218223D1F1E1C933 /* Pods_SampleChatMacOS_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B3959032C946EF500E55123 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B4F36602C5B496200CD036A /* SampleChatMacOS-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SampleChatMacOS-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B4F36632C5B496200CD036A /* SampleChatMacOS_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleChatMacOS_SwiftUIApp.swift; sourceTree = "<group>"; };
 		0B4F36652C5B496200CD036A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -30,7 +31,6 @@
 		0B4F36732C5B4E2A00CD036A /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
 		0B4F36762C5B576F00CD036A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0B4F367B2C5B6C1900CD036A /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
-		0B5D68D02C625BDE006A8271 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../iOS_R&D/StudentFirebaseSample 2/StudentFirebaseSample/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B9656762C5CCE2A008FC78E /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		0BA952922C61ECC700CC3E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0BA952942C62305100CC3E6F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA952922C61ECC700CC3E6F /* Info.plist */,
-				0B5D68D02C625BDE006A8271 /* GoogleService-Info.plist */,
+				0B3959032C946EF500E55123 /* GoogleService-Info.plist */,
 				0B4F367A2C5B6BFA00CD036A /* Firebase */,
 				0B4F36752C5B56E000CD036A /* Login */,
 				0B9656752C5CCE06008FC78E /* SignUp */,
@@ -215,7 +215,7 @@
 			files = (
 				0B4F366B2C5B496300CD036A /* Preview Assets.xcassets in Resources */,
 				0B4F36682C5B496300CD036A /* Assets.xcassets in Resources */,
-				0B5D68D12C625BDE006A8271 /* GoogleService-Info.plist in Resources */,
+				0B3959042C946EF500E55123 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
