@@ -10,34 +10,70 @@ import FirebaseCore
 import FirebaseFirestore
 import SwiftUI
 
-public class UsersData:Identifiable {
-    var userId         : String = ""
-    var userName       : String = ""
-    var mobile         : String = ""
-    var password       : String = ""
+//public class UsersData:Identifiable {
+//    var userId         : String = ""
+//    var userName       : String = ""
+//    var mobile         : String = ""
+//    var password       : String = ""
+//
+//    public func toMap(map:UsersData) ->[String:Any] {
+//        var mapData                 = [String:Any]()
+//        mapData["userId"]           = map.userId
+//        mapData["userName"]         = map.userName
+//        mapData["mobile"]           = map.mobile
+//        mapData["password"]         = map.password
+//        return mapData
+//    }
+//
+//    public func toObjects(map:[String:Any]) -> UsersData {
+//        var mapData                 = UsersData()
+//        var formatedDate = Timestamp(date: Date())
+//        if map["createdAt"] is Timestamp {
+//            formatedDate        = map["createdAt"] as! Timestamp
+//        }else if map["createdAt"] is Date {
+//            formatedDate        = Timestamp(date:map["createdAt"] as! Date)
+//        }
+//        mapData.userId              = map["userId"] as? String ?? ""
+//        mapData.userName            = map["userName"] as? String ?? ""
+//        mapData.mobile              = map["mobile"] as? String ?? ""
+//        mapData.password            = map["password"] as? String ?? ""
+//        return mapData
+//    }
+//}
 
-    public func toMap(map:UsersData) ->[String:Any] {
-        var mapData                 = [String:Any]()
-        mapData["userId"]           = map.userId
-        mapData["userName"]         = map.userName
-        mapData["mobile"]           = map.mobile
-        mapData["password"]         = map.password
-        return mapData
+struct UsersData: Identifiable, Hashable {
+    var id: String { userId } // Conformance to Identifiable based on userId
+    
+    var userId: String = ""
+    var userName: String = ""
+    var mobile: String = ""
+    var password: String = ""
+
+    // Converts struct to a dictionary (map)
+    func toMap() -> [String: Any] {
+        return [
+            "userId": userId,
+            "userName": userName,
+            "mobile": mobile,
+            "password": password
+        ]
     }
 
-    public func toObjects(map:[String:Any]) -> UsersData {
-        var mapData                 = UsersData()
+    // Initializes struct from a dictionary (map)
+    static func toObjects(map: [String: Any]) -> UsersData {
         var formatedDate = Timestamp(date: Date())
-        if map["createdAt"] is Timestamp {
-            formatedDate        = map["createdAt"] as! Timestamp
-        }else if map["createdAt"] is Date {
-            formatedDate        = Timestamp(date:map["createdAt"] as! Date)
+        if let timestamp = map["createdAt"] as? Timestamp {
+            formatedDate = timestamp
+        } else if let date = map["createdAt"] as? Date {
+            formatedDate = Timestamp(date: date)
         }
-        mapData.userId              = map["userId"] as? String ?? ""
-        mapData.userName            = map["userName"] as? String ?? ""
-        mapData.mobile              = map["mobile"] as? String ?? ""
-        mapData.password            = map["password"] as? String ?? ""
-        return mapData
+
+        return UsersData(
+            userId: map["userId"] as? String ?? "",
+            userName: map["userName"] as? String ?? "",
+            mobile: map["mobile"] as? String ?? "",
+            password: map["password"] as? String ?? ""
+        )
     }
 }
 
@@ -134,8 +170,9 @@ class Firebase{
                     userExists = false
                     for docs in document.documents {
                         print("\(docs.documentID) => \(docs.data())")
-                        userData = UsersData().toObjects(map: docs.data())
+                        userData = UsersData.toObjects(map: docs.data())
                         UserDefaults.standard.setValue(userData.userId, forKey: "userData")
+                        UserDefaults.standard.setValue(true, forKey: "isLogin")
                         userExists = true
                     }
                     if document.documents.count == 0
@@ -159,7 +196,7 @@ class Firebase{
                     userList.removeAll()
                     for docs in querySnapshot!.documents {//for (index, docs) in querySnapshot!.documents.enumerated() {
                         print("\(docs.documentID) => \(docs.data())")
-                        userList.append(UsersData().toObjects(map: docs.data()))
+                        userList.append(UsersData.toObjects(map: docs.data()))
                     }
                     completion(true)
                     if querySnapshot!.documents.count == 0

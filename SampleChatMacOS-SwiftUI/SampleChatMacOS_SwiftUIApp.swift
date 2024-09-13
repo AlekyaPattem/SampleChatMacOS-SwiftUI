@@ -17,8 +17,12 @@ struct SampleChatMacOS_SwiftUIApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            LoginView()
-                .frame(minWidth: 700,minHeight: 600)
+            if UserDefaults.standard.bool(forKey: "isLogin"){
+                MainView()
+            }else{
+                LoginView()
+                    .frame(minWidth: 700,minHeight: 600)
+            }
         }
     }
 }
